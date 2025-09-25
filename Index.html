@@ -3,12 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Design Block</title>
-    
-    <!-- Подключаем похожие шрифты из Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <title>Simple Image Layout</title>
     
     <style>
         * {
@@ -18,195 +13,118 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            background-color: #555555;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .container {
-            width: 100%;
-            height: 100vh;
-            min-height: 700px;
-            background-color: #4a4a4a;
+        /* Основной контейнер */
+        .main-container {
+            width: 1440px;
+            height: 1154px;
+            background-color: #555555;
             position: relative;
+        }
+
+        /* Контейнер для картинки */
+        .image-placeholder {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            width: 846.38px;
+            height: 938.35px;
+            background-color: #666666;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
         }
 
-        /* Контейнер для изображения */
-        .image-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 630px;
-            height: 480px;
-            z-index: 1;
-        }
-
-        .statue-image {
+        /* Стили для картинки */
+        .image-placeholder img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(100%) contrast(1.2) brightness(0.9);
-            opacity: 0.95;
-        }
-
-        /* Временный placeholder для изображения */
-        .image-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #666 0%, #333 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-size: 18px;
-            border-radius: 4px;
-        }
-
-        /* Основной текст */
-        .main-text {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 1400px;
-            padding: 0 60px;
-            pointer-events: none;
-        }
-
-        .title-line {
-            color: #D4AF37;
-            /* Временный шрифт, замените на точный */
-            font-family: 'Bebas Neue', sans-serif;
-            font-weight: 400;
-            font-size: 200px;
-            line-height: 0.8;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-            margin: 0;
             display: block;
         }
 
-        /* Точная настройка позиций каждой строки */
-        .title-line:nth-child(1) {
-            margin-left: 0;
-            margin-bottom: -20px;
+        /* Адаптив для меньших экранов */
+        @media (max-width: 1500px) {
+            .main-container {
+                transform: scale(0.9);
+                transform-origin: center;
+            }
         }
 
-        .title-line:nth-child(2) {
-            margin-left: 0;
-            margin-bottom: -20px;
+        @media (max-width: 1350px) {
+            .main-container {
+                transform: scale(0.8);
+                transform-origin: center;
+            }
         }
 
-        .title-line:nth-child(3) {
-            margin-left: 0;
-        }
-
-        /* Адаптив для планшетов */
         @media (max-width: 1200px) {
-            .title-line {
-                font-size: 150px;
-            }
-            
-            .image-container {
-                width: 500px;
-                height: 380px;
+            .main-container {
+                transform: scale(0.7);
+                transform-origin: center;
             }
         }
 
-        /* Адаптив для мобильных */
+        @media (max-width: 1050px) {
+            .main-container {
+                transform: scale(0.6);
+                transform-origin: center;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .main-container {
+                transform: scale(0.5);
+                transform-origin: center;
+            }
+        }
+
         @media (max-width: 768px) {
-            .title-line {
-                font-size: 80px;
-                line-height: 0.85;
+            .main-container {
+                transform: scale(0.4);
+                transform-origin: center;
             }
-            
-            .image-container {
-                width: 320px;
-                height: 250px;
-            }
-            
-            .main-text {
-                padding: 0 20px;
-            }
-        }
-
-        /* Инструкция для добавления изображения */
-        .instructions {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,0,0,0.8);
-            color: #D4AF37;
-            padding: 15px 25px;
-            border-radius: 8px;
-            font-size: 14px;
-            z-index: 10;
-            text-align: center;
-            max-width: 90%;
-        }
-
-        .instructions code {
-            background: rgba(212, 175, 55, 0.2);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: monospace;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Контейнер для изображения статуи -->
-        <div class="image-container">
-            <!-- Вставьте сюда ваше изображение -->
-            <div class="image-placeholder">
-                [Место для изображения статуи]
-            </div>
-            <!-- Для добавления реального изображения раскомментируйте: -->
-            <!-- <img src="URL_ВАШЕГО_ИЗОБРАЖЕНИЯ" class="statue-image" alt="Античная статуя"> -->
-        </div>
-
-        <!-- Основной текст -->
-        <div class="main-text">
-            <div class="title-line">ОВВА—ШКО</div>
-            <div class="title-line">БАЧЕНННЯ, А</div>
-            <div class="title-line">ІНСТРУКЦІЇ</div>
-        </div>
-
-        <!-- Временная инструкция (удалите после добавления изображения) -->
-        <div class="instructions">
-            <strong>Для точного отображения:</strong><br>
-            1. Замените <code>URL_ВАШЕГО_ИЗОБРАЖЕНИЯ</code> на ссылку на фото<br>
-            2. Для точного шрифта добавьте ссылку на .woff файл<br>
-            3. Настройте размеры под ваш экран
+    <div class="main-container">
+        <!-- Изображение -->
+        <div class="image-placeholder">
+            <img src="https://raw.githubusercontent.com/ToluOmis/obra_main/882974cd483c33937c13997d90ed4eae54fbe80e/ET5A7461%20%D0%BA%D0%BE%D0%BF%D1%96%D1%8F.jpg" 
+                 alt="Античная статуя"
+                 style="filter: grayscale(100%) contrast(1.1) brightness(0.95);">
         </div>
     </div>
 
     <script>
-        // Вспомогательный скрипт для отладки позиционирования
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Размер контейнера:', 
-                document.querySelector('.container').offsetWidth, 
-                'x', 
-                document.querySelector('.container').offsetHeight
-            );
-            
-            // Для тестирования с внешним изображением
-            // Вставьте URL изображения здесь:
-            const imageUrl = ''; // Вставьте URL сюда
-            
-            if (imageUrl) {
-                const placeholder = document.querySelector('.image-placeholder');
-                const img = document.createElement('img');
-                img.src = imageUrl;
-                img.className = 'statue-image';
-                img.alt = 'Античная статуя';
-                placeholder.parentNode.replaceChild(img, placeholder);
-            }
-        });
+        // Функция для быстрого добавления картинки
+        function addImage(url) {
+            const placeholder = document.querySelector('.image-placeholder');
+            placeholder.innerHTML = `<img src="${url}" alt="Image">`;
+            console.log('✅ Картинка добавлена!');
+        }
+
+        // Информация в консоли
+        console.log('📐 РАЗМЕРЫ:');
+        console.log('=====================================');
+        console.log('Контейнер: 1440 x 1154 px');
+        console.log('Картинка: 846.38 x 938.35 px');
+        console.log('Отступы: 30px сверху, 20px справа');
+        console.log('Фон: #555555');
+        console.log('=====================================');
+        console.log('');
+        console.log('✅ Изображение загружено с GitHub');
+        console.log('Фильтры: grayscale(100%), contrast(1.1), brightness(0.95)');
     </script>
 </body>
 </html>
